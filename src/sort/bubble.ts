@@ -53,6 +53,37 @@ function bubbleSort3(array: Array<any>) {
     }
 }
 
+//鸡尾酒排序
+function cocktailSort(array:Array<any>){
+    let left,right,index,i;
+    left=0;
+    right=array.length-1;
+    index=left;
+
+    while(right>left){
+        let isSorted=false;
+        for(i=left;i<right;i++){
+            if(array[i]>array[i+1]){
+                swap(array,i,i+1);
+                index=1;
+                isSorted=true;
+            }
+        }
+        right=index;
+        for(i=right;i>left;i--){
+            if(array[i]<array[i-1]){
+                swap(array,i,i-1);
+                index=i;
+                isSorted=true;
+            }
+        }
+        left=index;
+        if(!isSorted){
+            break;
+        }
+    }
+}
+
 
 // 类似于数组的洗牌方法，把生成的数据进行打乱
 function shuffle(a: Array<any>) {
@@ -88,5 +119,6 @@ function test(sortFn: Function) {
 test(bubbleSort1);
 test(bubbleSort2);
 test(bubbleSort3);
+test(cocktailSort);
 
 
